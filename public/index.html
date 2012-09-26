@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Socket.io Login Demo Dealie</title>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dijit/themes/claro/claro.css">
+        <style type="text/css">
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+
+            .loginInput {
+                width: 60%;
+                max-width: 12em;
+                min-width: 5em;
+                margin: 0.3em;
+            }
+
+            .loginPane {
+                width: 45%;
+            }
+
+            label.loginLabel {
+                min-width: 4em;
+                width: 30%;
+                display: inline-block;
+                text-align: right;
+            }
+
+            .loginButton {
+                float: right;
+                margin-right: 1em;
+            }
+
+            div#loginButtonWrapper {
+                width: 100%;
+            }
+
+
+
+        </style>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+            // Instead of using data-dojo-config, we’re creating a dojoConfig
+            // object *before* we load dojo.js; they’re functionally identical,
+            // it's just easier to read this approach with a larger configuration.
+            var dojoConfig = {
+                parseOnLoad: false,
+                baseUrl: "/js/",
+                tlmSiblingOfDojo: false,
+                packages: [
+                    { name: 'klass', location: 'vendor/klass', main: 'klass'},
+                    { name: "applyr", location: "vendor/applyr", main: "applyr"},
+                    { name: "eventemitter", location: "vendor/eventemitter", main: "eventemitter"},
+                    { name: 'slog', location: 'slog', main: 'main'}
+                ]
+            };
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dojo/dojo.js" data-dojo-config="async: true"></script>
+        <script>
+            require([
+                "dojo/ready",
+                "slog"
+            ], function(ready, Slog){
+                ready(function(){
+                    var slogClient = new Slog({});
+                    slogClient.start();
+                });
+
+            });
+        </script>
+    </head>
+    <body class="claro">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+
+    </body>
+</html>

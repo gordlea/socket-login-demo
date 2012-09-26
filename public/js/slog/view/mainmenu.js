@@ -42,7 +42,7 @@ define([
 
             var cpTop = new ContentPane({
                 region: 'top',
-                content: "<h1>NAVCOM: Main Menu</h1>"
+                content: "<h1>Socket Login Dealie: Main Menu</h1>"
             });
             lc.addChild(cpTop);
             var cpMain = new ContentPane({

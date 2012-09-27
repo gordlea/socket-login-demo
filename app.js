@@ -13,6 +13,9 @@ var session_store = new RedisStore({
     prefix: "s:"
 });
 
+
+//default users database used for authentication, replace with a real one
+//if you're going to actually use this
 var users = {
     "jimmy": {
         "name": "jimmy",
@@ -37,9 +40,6 @@ app.configure(function(){
     }));
   app.use(express.static(path.join(__dirname, 'public')));
   app.get('/js/vendor/applyr/applyr.js', function(req, res) {
-//        res.set('Content-Type', 'text/javascript');
-
-//        var jsdata = fs.readFileSync(__dirname + '/../node_modules/applyr/applyr.js', 'ascii');
         res.sendfile(path.join(__dirname, 'node_modules/applyr/applyr.js'));
     });
 });
@@ -56,14 +56,9 @@ var server = require('http').createServer(app).listen(app.get('port'), function(
 
 var io = require('socket.io').listen(server);
 io.configure(function(){
-//    io.set('transports', ['websocket']);
     io.set('browser client minification', true);
     io.set('browser client etag', true);
     io.set('browser client gzip', true);
-//    io.set('authorization', function (handshakeData, callback) {
-//        console.log("authorization");
-//        callback(null, false); // error first callback style
-//    });
 });
 
 //authenticated people only
@@ -94,7 +89,7 @@ var secureSocket = io.of("/secure").authorization( function(handshakeData, callb
     } else {
         callback('No cookie', false);
     }
-}.bind(this)).on('connection', function(socket) {
+}).on('connection', function(socket) {
         console.log("connected to globalSocket".red);
         console.dir(socket.handshake.authorizedUser);
         socket.emit("authorizedUserConnected", {player: socket.handshake.authorizedUser});
@@ -157,5 +152,5 @@ var uiSocket = io.of("/ui").authorization( function(handshakeData, callback) {
         catch (err) {
             console.error("There was an error opening the file: %s", err);
         }
-    }.bind(this));
-}.bind(this));
+    });
+});

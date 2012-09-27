@@ -18,14 +18,16 @@ define([
 
     return  declare([EventEmitter, Applyr], {
         constructor: function(config) {
-            console.log(window.location.host)
+
             this.applyConfig(this, config, {
                 baseSocketAddress: 'http://' + window.location.host + '/',
                 uiSocketAddress: "ui",
                 secureSocketAddress: "secure"
             });
-            console.log("SockClient");
+
             this._setupSockets();
+
+            //setup our views
             this.views = {};
             this.views["login"] = new LoginView({
                 uiSocket: this.uiSocket
@@ -37,6 +39,8 @@ define([
             this.views["createuser"] = new CreateUserView({
                 uiSocket: this.uiSocket
             });
+
+            //setup our view event handlers
             this.views["mainmenu"].addListener('loggedOut', function() {
                 this.views["mainmenu"].destroy();
                 location.reload();
@@ -46,6 +50,8 @@ define([
                 this.views["createuser"].show();
             }.bind(this));
 
+
+            //setup our main event handlers
             this.addListener("userAuthorized", function(player) {
                 this.views["mainmenu"].secureSocket = this.secureSocket;
                 this.showView("mainmenu");
@@ -84,7 +90,9 @@ define([
             this.secureSocket = null;
         },
 
-        _connectGlobalSocket: function() {
+        //attempts to connect to a socket that requires authentication, if we can
+        //connect, we will fire the userAuthorized event
+        _connectSecureSocket: function() {
             if (this.secureSocket !== null && this.secureSocket !== undefined) {
                 this.secureSocket.socket.reconnect();
             } else {

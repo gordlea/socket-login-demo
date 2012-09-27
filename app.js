@@ -103,6 +103,9 @@ var secureSocket = io.of("/secure").authorization( function(handshakeData, callb
     });
 
 var uiSocket = io.of("/ui").authorization( function(handshakeData, callback) {
+    // we do this (the .authorization call on ui) to set the value of session and
+    // sid (session id) in our handshakeData, where we can then access it in any
+    // socket.io handler
     if (handshakeData.headers.cookie) {
         var signedCookies = connect_utils.parseJSONCookies(connect_utils.parseSignedCookies(cookie.parse(handshakeData.headers.cookie), SESSION_KEY));
         var sid = signedCookies['connect.sid'];//.split(':')[1];

@@ -1,7 +1,10 @@
 {
     "name":"socket-login-demo",
     "version":"0.0.1",
-    "private":true,
+    "engines": {
+        "node": "0.8.x",
+        "npm": "1.1.x"
+    },
     "scripts":{
         "start":"node app"
     },
@@ -12,8 +15,8 @@
         "connect":"2.4.3",
         "connect-redis":"1.4.2",
         "socket.io": "0.9.10",
-        "applyr": "*",
-        "cookie": "*"
+        "applyr": "0.0.3",
+        "cookie": "0.0.4"
     },
     "optionalDependencies":{
         "hiredis":"0.1.14"

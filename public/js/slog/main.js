@@ -80,7 +80,7 @@ define([
 
             this.uiSocket.on("authentication:success", function(data) {
                 console.info("User authentication successfull.");
-                this._connectGlobalSocket();
+                this._connectSecureSocket();
             }.bind(this));
             this.uiSocket.on("authentication:failure", function() {
                 console.warn("User authentication failed.");
@@ -115,7 +115,7 @@ define([
 
 
         start: function() {
-            this._connectGlobalSocket();
+            this._connectSecureSocket();
         }
     });
 

@@ -9,14 +9,14 @@
         "start":"node app"
     },
     "dependencies":{
-        "express":"3.0.0rc5",
+        "express":"4.22.0",
         "redis":"0.7.2",
         "redis-url":"0.1.0",
-        "connect":"2.4.3",
+        "connect":"3.0.0",
         "connect-redis":"1.4.2",
-        "socket.io": "0.9.10",
+        "socket.io": "2.5.0",
         "applyr": "0.0.3",
-        "cookie": "0.0.4"
+        "cookie": "0.7.0"
     },
     "optionalDependencies":{
         "hiredis":"0.1.14"
